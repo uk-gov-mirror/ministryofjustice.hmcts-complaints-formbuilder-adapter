@@ -8,7 +8,8 @@ docker-build:
 
 .PHONY: shell
 shell: docker-down docker-build
-	docker-compose run --rm app sh
+	docker-compose up -d
+	docker-compose exec app sh
 
 .PHONY: test
 test: docker-down docker-build
