@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/buildpack-deps:14.04
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: test
+          command: docker-compose run --rm app rspec
+      - run:
+          name: lint
+          command: docker-compose run --rm app rubocop
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
