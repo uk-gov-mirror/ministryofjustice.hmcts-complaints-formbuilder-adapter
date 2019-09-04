@@ -12,9 +12,28 @@ jobs:
       - run:
           name: lint
           command: docker-compose run --rm app rubocop
+  staging_deploy:
+    steps:
+      - checkout
+  production_deploy:
+    steps:
+      - checkout
 
 workflows:
   version: 2
   test_and_deploy:
     jobs:
       - test
+      - staging_deploy:
+          requires:
+          - test
+          filters:
+            branches:
+              only: master
+      - permit_production_deploy:
+          type: approval
+          requires:
+          - staging_deploy
+      - production_deploy:
+          requires:
+          - permit_production_deploy
