@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+  - '.bundle/**'
+  - 'bin/**'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: false
