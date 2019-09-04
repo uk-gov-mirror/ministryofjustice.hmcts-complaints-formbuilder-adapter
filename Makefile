@@ -16,16 +16,16 @@ spec: docker-down docker-build test lint
 
 .PHONY: test
 test: docker-down docker-build
-	docker-compose run --rm app rspec
+	docker-compose run -f docker-compose.yml -f docker-compose.mount-volume.yml --rm app rspec
 
 .PHONY: lint
 lint:
-	docker-compose run --rm app rubocop
+	docker-compose run -f docker-compose.yml -f docker-compose.mount-volume.yml --rm app rubocop
 
 .PHONY: fix
 fix:
-	docker-compose run --rm app rubocop -a
+	docker-compose run -f docker-compose.yml -f docker-compose.mount-volume.yml --rm app rubocop -a
 
 .PHONY: serve
 serve: docker-down docker-build
-	docker-compose run --rm --service-ports app
+	docker-compose run --rm --service-ports -f docker-compose.yml -f docker-compose.mount-volume.yml app
