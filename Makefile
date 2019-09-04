@@ -12,7 +12,7 @@ shell: docker-down docker-build
 
 .PHONY: test
 test: docker-down docker-build
-	docker-compose run --rm echo "fix me"
+	docker-compose run --rm app rspec
 
 .PHONY: serve
 serve: docker-down docker-build
