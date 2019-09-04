@@ -13,9 +13,13 @@ jobs:
           name: lint
           command: docker-compose run --rm app rubocop
   staging_deploy:
+    docker:
+      - image: circleci/buildpack-deps:14.04
     steps:
       - checkout
   production_deploy:
+    docker:
+      - image: circleci/buildpack-deps:14.04
     steps:
       - checkout
 
