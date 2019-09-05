@@ -46,3 +46,9 @@ bower.json
 
 # Ignore node_modules
 node_modules/
+
+# ignore bash history file made by docker alpine
+.ash_history
+
+# ignore cache dir made by rubocop
+.cache/
