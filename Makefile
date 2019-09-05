@@ -11,27 +11,24 @@ docker-build:
 
 .PHONY: shell
 shell: docker-down docker-build
-	$(COMPOSE) run --rm app sh
-	docker-compose $(COMPOSE) up -d
-	docker-compose exec app sh
+	$(COMPOSE) up -d
+	$(COMPOSE) exec app sh
 
 .PHONY: spec
 spec: docker-down docker-build test lint
 
 .PHONY: test
 test: docker-down docker-build
-	$(COMPOSE) run --rm echo "fix me"
-	docker-compose $(COMPOSE) run --rm app rspec
+	$(COMPOSE) run --rm app rspec
 
 .PHONY: lint
 lint:
-	docker-compose $(COMPOSE) run --rm app rubocop
+	$(COMPOSE) run --rm app rubocop
 
 .PHONY: fix
 fix:
-	docker-compose $(COMPOSE) run --rm app rubocop -a
+	$(COMPOSE) run --rm app rubocop -a
 
 .PHONY: serve
 serve: docker-down docker-build
 	$(COMPOSE) run --rm --service-ports app
-	docker-compose $(COMPOSE) run --rm --service-ports app
