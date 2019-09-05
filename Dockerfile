@@ -1,5 +1,7 @@
 FROM ruby:2.6.4-alpine3.9
 
+ARG UID
+
 RUN apk add build-base postgresql-contrib postgresql-dev bash tzdata
 
 WORKDIR /app
@@ -10,6 +12,8 @@ RUN gem install bundler
 RUN bundle install --no-cache
 
 COPY . .
+
+RUN chown -R "${UID}:${UID}" .
 
 ENV APP_PORT 3000
 EXPOSE $APP_PORT
