@@ -10,7 +10,7 @@ ENV HOME /app
 COPY Gemfile* .ruby-version ./
 
 RUN gem install bundler
-RUN bundle install
+RUN bundle install --no-cache
 
 COPY . .
 
