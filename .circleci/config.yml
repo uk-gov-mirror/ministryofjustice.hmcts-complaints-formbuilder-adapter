@@ -1,0 +1,43 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/buildpack-deps:14.04
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: test
+          command: docker-compose run --rm app rspec
+      - run:
+          name: lint
+          command: docker-compose run --rm app rubocop
+  staging_deploy:
+    docker:
+      - image: circleci/buildpack-deps:14.04
+    steps:
+      - checkout
+  production_deploy:
+    docker:
+      - image: circleci/buildpack-deps:14.04
+    steps:
+      - checkout
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - test
+      - staging_deploy:
+          requires:
+          - test
+          filters:
+            branches:
+              only: master
+      - permit_production_deploy:
+          type: approval
+          requires:
+          - staging_deploy
+      - production_deploy:
+          requires:
+          - permit_production_deploy
