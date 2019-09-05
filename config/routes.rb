@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :complaint, only: [:create]
-
-  # namespace 'v1' do
-  # end
+  scope 'v1' do
+    resources :complaint, only: [:create]
+  end
 end
