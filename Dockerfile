@@ -5,11 +5,12 @@ ARG UID
 RUN apk add build-base postgresql-contrib postgresql-dev bash tzdata
 
 WORKDIR /app
+ENV HOME /app
 
 COPY Gemfile* .ruby-version ./
 
 RUN gem install bundler
-RUN bundle install --no-cache
+RUN bundle install
 
 COPY . .
 
