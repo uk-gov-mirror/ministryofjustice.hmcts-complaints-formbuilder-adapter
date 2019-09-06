@@ -22,8 +22,7 @@ RUN chown -R 1001:appgroup /app
 USER 1001
 
 ENV APP_PORT 3000
+ARG RAILS_ENV
 EXPOSE $APP_PORT
 
-ENV RAILS_ENV production
-ENV RAILS_LOG_TO_STDOUT true
-CMD bundle exec rake db:migrate && bundle exec rails s -e ${RAILS_ENV} -e ${RAILS_LOG_TO_STDOUT} -p ${APP_PORT} --binding=0.0.0.0
+CMD bundle exec rake db:migrate && bundle exec rails s -p ${APP_PORT} --binding=0.0.0.0
