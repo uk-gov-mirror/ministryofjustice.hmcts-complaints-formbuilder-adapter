@@ -14,3 +14,9 @@ Style/SymbolArray:
 
 Metrics/LineLength:
   Enabled: false
+
+Metrics/BlockLength:
+  Max: 40
+
+Metrics/MethodLength:
+  Max: 15
