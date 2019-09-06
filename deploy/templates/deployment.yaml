@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hmcts-complaints-formbuilder-adapter
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hmcts-complaints-formbuilder-adapter
+    spec:
+      containers:
+      - name: hmcts-complaints-formbuilder-adapter
+        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/form-builder/hmcts-complaints-formbuilder-adapter:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: hmcts-complaints-formbuilder-adapter-secret
+              key: SECRET_KEY_BASE
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              key: url
+        - name: RAILS_ENV
+          valueFrom:
+            secretKeyRef:
+              name: hmcts-complaints-formbuilder-adapter-secret
+              key: RAILS_ENV
