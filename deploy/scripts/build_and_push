@@ -22,4 +22,3 @@ out = `#{command}`
 
 puts 'Pushing docker image...'
 out = `AWS_ACCESS_KEY_ID=#{access_key} AWS_SECRET_ACCESS_KEY=#{secret_access_key} docker push #{repo_url}:latest`
-puts out
