@@ -20,5 +20,3 @@ Metrics/LineLength:
 Metrics/BlockLength:
   ExcludedMethods: ['describe']
 
-Metrics/MethodLength:
-  Max: 15
