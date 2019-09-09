@@ -41,5 +41,5 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.auth[:shared_key] = ENV.fetch('DEVELOPMENT_JWE_SHARED_KEY', [243, 130, 191, 163, 8, 63, 98, 223, 78, 71, 61, 254, 24, 23, 166, 41].pack('c*').freeze)
+  config.auth[:shared_key] = Base64.decode64(ENV.fetch('DEVELOPMENT_JWE_SHARED_KEY', '5Vod6qeIhT5WpeXYhjrqCA=='.freeze))
 end

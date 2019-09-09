@@ -4,20 +4,24 @@ class ApplicationController < ActionController::API
 
   def authorize_request
     encrypted_payload = request.raw_post
-    return render_unauthorized if encrypted_payload.empty?
+    return render_unauthorized if encrypted_payload.nil? || encrypted_payload.empty?
 
     begin
-      @decrypted_body = JWE.decrypt(encrypted_payload, Rails.application.config.auth.fetch(:shared_key))
-      return
+      @decrypted_body = JWE.decrypt(encrypted_payload, jwe_key)
     rescue JWE::DecodeError => e
       logger.info("retuning unauthorized due to JWE::DecodeError '#{e}'")
+      render_unauthorized
     rescue JWE::InvalidData => e
       logger.error("retuning unauthorized due to JWE::InvalidData (we could be missing the decryption key) '#{e}'")
+      render_unauthorized
     end
-    render_unauthorized
   end
 
   private
+
+  def jwe_key
+    Rails.application.config.auth.fetch(:shared_key)
+  end
 
   def render_unauthorized
     render status: :unauthorized
