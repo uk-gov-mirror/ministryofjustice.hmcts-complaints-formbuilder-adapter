@@ -1,7 +1,6 @@
 describe 'Submitting a complaint', type: :request do
-  it 'requires authentication' do
-    post '/v1/complaint'
-    expect(response).to have_http_status(:unauthorized)
+  include_context 'when authentication required' do
+    let(:url) { '/v1/complaint' }
   end
 
   it 'returns 201 on a valid post' do

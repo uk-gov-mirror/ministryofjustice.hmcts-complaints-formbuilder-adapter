@@ -14,6 +14,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'helpers/auth_helper'
+require 'shared_context/auth_tests'
 
 RSpec.configure do |config|
   config.include AuthHelper
