@@ -21,24 +21,19 @@ describe ApplicationController, type: :controller do
       end
 
       it 'a encrypted with the incorrect key' do
-        post :create, body: encrypted_body
+        payload = JWE.encrypt({msg: 'foo'}.to_json, SecureRandom.random_bytes(16), alg: 'dir')
+        post :create, body: payload
         expect(response).to have_http_status(401)
       end
     end
 
     context 'and accepts them' do
-      let(:test_key) { [243, 130, 191, 163, 8, 63, 98, 223, 78, 71, 61, 254, 24, 23, 166, 41].pack('c*') }
-
       it 'when a valid body is given' do
         msg = { bar: 'foo' }.to_json
-        post :create, body: encrypted_body(key: test_key, msg: msg)
+        post :create, body: encrypted_body(msg: msg)
         expect(response).to have_http_status(200)
         expect(response.body).to eq(msg)
       end
-    end
-
-    def encrypted_body(key: SecureRandom.random_bytes(16), msg: { msg: 'foo' }.to_json)
-      JWE.encrypt(msg, key, alg: 'dir')
     end
   end
 end
