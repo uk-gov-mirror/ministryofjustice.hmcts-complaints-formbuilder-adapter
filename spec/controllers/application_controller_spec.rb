@@ -20,7 +20,7 @@ describe ApplicationController, type: :controller do
     end
 
     it 'rejects a encrypted payload with a different incorrect key' do
-      payload = JWE.encrypt({ msg: 'foo' }.to_json, SecureRandom.random_bytes(16), alg: 'dir')
+      payload = JWE.encrypt({ msg: 'foo' }.to_json, SecureRandom.hex(8), alg: 'dir')
       post :create, body: payload
       expect(response).to have_http_status(:unauthorized)
     end
@@ -30,7 +30,7 @@ describe ApplicationController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'supplys the decrpted payload to the controller' do
+    it 'passes decrypted payload to the controller as "decrypted_body"' do
       msg = { bar: 'foo' }.to_json
       post :create, body: encrypted_body(msg: msg)
       expect(response.body).to eq(msg)

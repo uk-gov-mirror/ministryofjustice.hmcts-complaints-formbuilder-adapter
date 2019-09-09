@@ -94,5 +94,5 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.auth[:shared_key] = Base64.decode64(ENV.fetch('PRODUCTION_JWE_SHARED_KEY'))
+  config.auth[:shared_key] = ENV.fetch('PRODUCTION_JWE_SHARED_KEY')
 end

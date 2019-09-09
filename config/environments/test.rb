@@ -34,7 +34,7 @@ Rails.application.configure do
   config.active_support.deprecation = :stderr
 
   config.auth[:shared_key] =
-    Base64.decode64(ENV.fetch('TEST_JWE_SHARED_KEY', '5Vod6qeIhT5WpeXYhjrqCA=='.freeze))
+    ENV.fetch('TEST_JWE_SHARED_KEY', SecureRandom.hex(8).freeze)
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
