@@ -21,7 +21,7 @@ describe ApplicationController, type: :controller do
       end
 
       it 'a encrypted with the incorrect key' do
-        payload = JWE.encrypt({msg: 'foo'}.to_json, SecureRandom.random_bytes(16), alg: 'dir')
+        payload = JWE.encrypt({ msg: 'foo' }.to_json, SecureRandom.random_bytes(16), alg: 'dir')
         post :create, body: payload
         expect(response).to have_http_status(401)
       end

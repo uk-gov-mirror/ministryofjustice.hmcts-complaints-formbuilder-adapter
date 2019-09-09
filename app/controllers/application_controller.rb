@@ -7,7 +7,7 @@ class ApplicationController < ActionController::API
     return render_unauthorized if encrypted_payload.empty?
 
     begin
-      @decrypted_body = JWE.decrypt(encrypted_payload, [243, 130, 191, 163, 8, 63, 98, 223, 78, 71, 61, 254, 24, 23, 166, 41].pack('c*'))
+      @decrypted_body = JWE.decrypt(encrypted_payload, Rails.application.config.auth.fetch(:shared_key))
       return
     rescue JWE::DecodeError => e
       logger.info("retuning unauthorized due to JWE::DecodeError '#{e}'")
