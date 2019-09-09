@@ -16,7 +16,7 @@ Metrics/LineLength:
   Enabled: false
 
 Metrics/BlockLength:
-  Max: 40
+  ExcludedMethods: ['describe']
 
 Metrics/MethodLength:
   Max: 15
