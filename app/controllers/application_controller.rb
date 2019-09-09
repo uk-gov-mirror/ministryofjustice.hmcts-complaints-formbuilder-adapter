@@ -10,10 +10,10 @@ class ApplicationController < ActionController::API
     begin
       @decrypted_body = JWE.decrypt(encrypted_payload, jwe_key)
     rescue JWE::DecodeError => e
-      logger.info("retuning unauthorized due to JWE::DecodeError '#{e}'")
+      logger.info("returning unauthorized due to JWE::DecodeError '#{e}'")
       render_unauthorized
     rescue JWE::InvalidData => e
-      logger.error("retuning unauthorized due to JWE::InvalidData (we could be missing the decryption key) '#{e}'")
+      logger.error("returning unauthorized due to JWE::InvalidData (we could be missing the decryption key) '#{e}'")
       render_unauthorized
     end
   end
