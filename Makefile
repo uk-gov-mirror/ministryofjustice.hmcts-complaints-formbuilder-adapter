@@ -1,6 +1,6 @@
 UID ?= $(shell id -u)
 
-COMPOSE = env UID=$(UID) RAILS_ENV='test' docker-compose -f docker-compose.yml -f docker-compose.mount-volume.yml
+COMPOSE = env UID=$(UID) docker-compose -f docker-compose.yml -f docker-compose.mount-volume.yml
 COMPOSE_DEVELOPMENT = env UID=$(UID) RAILS_ENV='development' docker-compose -f docker-compose.yml -f docker-compose.mount-volume.yml
 
 .PHONY: docker-down
