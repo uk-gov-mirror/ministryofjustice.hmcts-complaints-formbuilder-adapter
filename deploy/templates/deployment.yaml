@@ -26,5 +26,3 @@ spec:
             secretKeyRef:
               name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
               key: url
-        - name: RAILS_ENV
-          value: {{ .Values.environmentName }}
