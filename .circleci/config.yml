@@ -49,10 +49,19 @@ workflows:
           requires:
             - aws-ecr/build_and_push_image
             - test
+          filters:
+            branches:
+              only: master
       - confirm_production_deploy:
           type: approval
           requires:
             - deploy_staging
+          filters:
+            branches:
+              only: master
       - deploy_production:
           requires:
             - confirm_production_deploy
+          filters:
+            branches:
+              only: master
