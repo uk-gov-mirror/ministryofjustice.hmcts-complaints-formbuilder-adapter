@@ -15,5 +15,5 @@ This application takes Webhook posts received from [fb-submitter](https://github
 Note: see the [Makefile](./Makefile) for other cmds
 
 ## Production setup
-- run `rake auth:generate_key`  to create a secret key for the `PRODUCTION_JWE_SHARED_KEY` env var
+- run `rake auth:generate_key`  to create a secret key for the `JWE_SHARED_KEY` env var
 - env var `DATABASE_URL` must point to a postgress db 
