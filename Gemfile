@@ -15,6 +15,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'rubocop', '~> 0.74.0'
+  gem 'rubocop-rspec', '~> 1.35'
 end
 
 group :development do
@@ -23,3 +24,5 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+gem 'jwe', '~> 0.4.0'
