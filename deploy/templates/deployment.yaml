@@ -27,6 +27,16 @@ spec:
             secretKeyRef:
               name: hmcts-complaints-formbuilder-adapter-secret
               key: JWE_SHARED_KEY
+        - name: OPTICS_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hmcts-complaints-formbuilder-adapter-secret
+              key: OPTICS_SECRET_KEY
+        - name: OPTICS_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hmcts-complaints-formbuilder-adapter-secret
+              key: OPTICS_API_KEY
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
