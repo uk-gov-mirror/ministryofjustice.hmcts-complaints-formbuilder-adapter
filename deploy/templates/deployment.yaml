@@ -28,7 +28,6 @@ spec:
             secretKeyRef:
               name: hmcts-complaints-formbuilder-adapter-secret
               key: SECRET_KEY_BASE
-        env:
         - name: JWE_SHARED_KEY
           valueFrom:
             secretKeyRef:
