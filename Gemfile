@@ -7,7 +7,7 @@ gem 'httparty', '~> 0.17.0'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.0'
-gem "sentry-raven", "~> 2.11"
+gem 'sentry-raven', '~> 2.11'
 
 group :test do
   gem 'webmock', '~> 3.7.2'
