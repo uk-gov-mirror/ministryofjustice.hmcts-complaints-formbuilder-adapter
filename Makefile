@@ -1,5 +1,7 @@
 UID ?= $(shell id -u)
+
 COMPOSE = env UID=$(UID) docker-compose -f docker-compose.yml -f docker-compose.mount-volume.yml
+COMPOSE_DEVELOPMENT = env UID=$(UID) RAILS_ENV='development' docker-compose -f docker-compose.yml -f docker-compose.mount-volume.yml
 
 .PHONY: docker-down
 docker-down:
@@ -31,4 +33,4 @@ fix:
 
 .PHONY: serve
 serve: docker-down docker-build
-	$(COMPOSE) run --rm --service-ports app
+	$(COMPOSE_DEVELOPMENT) run --rm --service-ports app

@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hmcts-complaints-formbuilder-adapter-{{ .Values.environmentName }}
+spec:
+  tls:
+    - hosts:
+        - hmcts-complaints-formbuilder-adapter-{{ .Values.environmentName }}.apps.live-1.cloud-platform.service.justice.gov.uk
+  rules:
+  - host: hmcts-complaints-formbuilder-adapter-{{ .Values.environmentName }}.apps.live-1.cloud-platform.service.justice.gov.uk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hmcts-complaints-formbuilder-adapter
+          servicePort: 3000

@@ -23,6 +23,7 @@ Rails.application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
   config.cache_store = :null_store
+  config.require_master_key = false
 
   # Raise exceptions instead of rendering exception templates.
   config.action_dispatch.show_exceptions = false
@@ -35,6 +36,12 @@ Rails.application.configure do
 
   config.auth[:shared_key] =
     ENV.fetch('TEST_JWE_SHARED_KEY', SecureRandom.hex(8).freeze)
+
+  config.auth[:optics_secret_key] =
+    ENV.fetch('OPTICS_SECRET_KEY', SecureRandom.hex(8).freeze)
+
+  config.auth[:optics_api_key] =
+    ENV.fetch('OPTICS_API_KEY', SecureRandom.hex(8).freeze)
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
