@@ -215,7 +215,7 @@ DEPENDENCIES
   rspec-rails
   rubocop (~> 0.74.0)
   rubocop-rspec (~> 1.35)
-  sentry-raven
+  sentry-raven (~> 2.11)
   spring
   spring-watcher-listen (~> 2.0.0)
   webmock (~> 3.7.2)
