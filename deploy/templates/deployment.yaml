@@ -43,6 +43,11 @@ spec:
             secretKeyRef:
               name: hmcts-complaints-formbuilder-adapter-secret
               key: OPTICS_API_KEY
+        - name: SENTRY_DSN
+          valueFrom:
+            secretKeyRef:
+              name: hmcts-complaints-formbuilder-adapter-secret
+              key: SENTRY_DSN
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
