@@ -2,7 +2,7 @@ describe Usecase::Optics::GenerateJwtToken do
   describe '#generate' do
     subject(:token) { described_class.new(url: url, api_key: api_key, hmac_secret: secret_key) }
 
-    let(:jwt_token) { 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmb28iLCJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6MTU2ODIxNjA4NiwiZXhwIjoxNTgxMTc2MDg2fQ.7C_DTNxgAnN8jbIhDDzc574FOXtUjegQJrrATIiI_8E' }
+    let(:jwt_token) { 'eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJmb28iLCJhdWQiOiJleGFtcGxlLmNvbSIsImlhdCI6MTU2ODIxNjA4Nn0.oBZf0cFbUrazmp9YRJ5IFzq3hZdCCkJGGRrFCPu6WNQ' }
     let(:url) { 'example.com' }
     let(:api_key) { 'foo' }
     let(:secret_key) { 'bar' }
@@ -10,7 +10,6 @@ describe Usecase::Optics::GenerateJwtToken do
     let(:expected_payload) do
       [
         { 'aud' => url,
-          'exp' => 1_581_176_086,
           'iat' => 1_568_216_086,
           'iss' => 'foo' },
         { 'alg' => 'HS256' }

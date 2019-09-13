@@ -20,7 +20,7 @@ describe Gateway::Optics do
 
     it 'sends a request for a token' do
       gateway.request_bearer_token(jwt_token: token)
-      expect(WebMock) .to have_requested(:post, 'https://uat.icasework.com/token?db=hmcts').with(
+      expect(WebMock).to have_requested(:post, 'https://uat.icasework.com/token?db=hmcts').with(
         headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
         body: expected_body
       ).once
@@ -60,10 +60,6 @@ describe Gateway::Optics do
         'Authorization' => "Bearer #{bearer_token}",
         'Content-Type' => 'application/json'
       }
-    end
-
-    it 'takes a jwt token and body' do
-      gateway.post(body: {}, bearer_token: 'foo')
     end
 
     it 'posts given body to optics' do
