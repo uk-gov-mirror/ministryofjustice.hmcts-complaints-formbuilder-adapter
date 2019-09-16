@@ -9,15 +9,16 @@ gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.0'
 gem 'sentry-raven', '~> 2.11'
 
-group :test do
-  gem 'webmock', '~> 3.7.3'
-end
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
   gem 'rubocop', '~> 0.74.0'
   gem 'rubocop-rspec', '~> 1.35'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'timecop', '~> 0.9.1'
+  gem 'webmock', '~> 3.7.3'
 end
 
 group :development do
@@ -27,3 +28,4 @@ group :development do
 end
 
 gem 'jwe', '~> 0.4.0'
+gem 'jwt', '~> 2.2'
