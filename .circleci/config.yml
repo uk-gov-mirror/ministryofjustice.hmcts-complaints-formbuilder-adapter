@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
-  aws-ecr: circleci/aws-ecr@0.0.2
+  aws-ecr: circleci/aws-ecr@6.3.0
+
 jobs:
   test:
     working_directory: ~/circle
@@ -27,7 +28,7 @@ jobs:
             - "7e:e7:44:be:a1:4b:4e:3c:56:65:3a:94:19:50:02:cc"
       - run:
           name: deploy to staging
-          command: './deploy/scripts/circle_deploy.sh staging $KUBE_TOKEN_STAGING'
+          command: './deploy/scripts/circle_deploy.sh "APP_${CIRCLE_SHA1}" staging $KUBE_TOKEN_STAGING'
 
   deploy_production:
     working_directory: ~/circle/git/hmcts-complaints-formbuilder-adapter
@@ -41,24 +42,37 @@ jobs:
             - "7e:e7:44:be:a1:4b:4e:3c:56:65:3a:94:19:50:02:cc"
       - run:
           name: deploy to production
-          command: './deploy/scripts/circle_deploy.sh production $KUBE_TOKEN_PRODUCTION'
+          command: './deploy/scripts/circle_deploy.sh "APP_${CIRCLE_SHA1}" production $KUBE_TOKEN_PRODUCTION'
 
 workflows:
   version: 2
   release:
     jobs:
       - test
-      - aws-ecr/build_and_push_image:
-          account-url: "754256621582.dkr.ecr.eu-west-2.amazonaws.com"
+      - aws-ecr/build-and-push-image:
+          name: push_app_image
+          dockerfile: Dockerfile
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_DEFAULT_REGION
           repo: "form-builder/hmcts-complaints-formbuilder-adapter"
-          region: ${AWS_DEFAULT_REGION}
-          tag: "${CIRCLE_SHA1}"
+          tag: "APP_${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
+      - aws-ecr/build-and-push-image:
+          name: push_worker_image
+          dockerfile: Dockerfile.worker
+          account-url: AWS_ACCOUNT_URL
+          region: AWS_DEFAULT_REGION
+          repo: "form-builder/hmcts-complaints-formbuilder-adapter"
+          tag: "WORKER_${CIRCLE_SHA1}"
           filters:
             branches:
               only: master
       - deploy_staging:
           requires:
-            - aws-ecr/build_and_push_image
+            - push_app_image
+            - push_worker_image
             - test
           filters:
             branches:
