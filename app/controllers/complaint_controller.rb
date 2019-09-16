@@ -2,9 +2,11 @@ class ComplaintController < ApplicationController
   def create
     Usecase::Optics::CreateCase.new(
       optics_gateway: Gateway::Optics.new,
-      presenter: OpenStruct.new(present: JSON.parse(@decrypted_body)), # temporary stub presenter
+      presenter: Presenter::Complaint.new(form_builder_payload: @decrypted_body),
       get_bearer_token: bearer_token
     ).execute
+
+    render json: { placeholder: true }, status: 201
   end
 
   private

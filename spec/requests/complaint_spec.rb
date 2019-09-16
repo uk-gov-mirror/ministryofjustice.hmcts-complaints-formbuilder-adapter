@@ -10,7 +10,7 @@ describe 'Submitting a complaint', type: :request do
 
     stub_request(:post, 'https://uat.icasework.com/createcase?db=hmcts')
       .with(
-        body: runner_submission,
+        body: expected_optics_payload,
         headers: { 'Authorization' => 'Bearer some_bearer_token', 'Content-Type' => 'application/json' }
       )
       .to_return(
@@ -19,7 +19,29 @@ describe 'Submitting a complaint', type: :request do
         headers: {}
       )
 
-    post '/v1/complaint', params: encrypted_body(msg: runner_submission.to_json)
+    post '/v1/complaint', params: encrypted_body(msg: runner_submission)
+  end
+
+  let(:expected_optics_payload) do
+    {
+      RequestDate: Date.today,
+      Details: '',
+      Location: '',
+      db: 'hmcts',
+      Type: 'Complaint',
+      Format: 'json',
+      RequestMethod: 'Form',
+      Team: 'INBOX',
+      'Case.ContactMethod': 'Online - gov.uk',
+      'Customer.FirstName': '',
+      'Customer.Surname': '',
+      'Customer.Address': '',
+      'Customer.Town': '',
+      'Customer.County': '',
+      'Customer.Postcode': '',
+      'Customer.Email': '',
+      'Customer.Phone': ''
+    }.to_json
   end
 
   let(:runner_submission) do
@@ -43,7 +65,7 @@ describe 'Submitting a complaint', type: :request do
     let(:url) { '/v1/complaint' }
   end
 
-  xit 'returns 201 on a valid post' do
+  it 'returns 201 on a valid post' do
     expect(response).to have_http_status(:created)
   end
 
@@ -58,7 +80,7 @@ describe 'Submitting a complaint', type: :request do
     it 'posts the submission to Optics' do
       expect(WebMock).to have_requested(:post, 'https://uat.icasework.com/createcase?db=hmcts').with(
         headers: { 'Authorization' => 'Bearer some_bearer_token', 'Content-Type' => 'application/json' },
-        body: runner_submission
+        body: expected_optics_payload
       ).once
     end
   end
