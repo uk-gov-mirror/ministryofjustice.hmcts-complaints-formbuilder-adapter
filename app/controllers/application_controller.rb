@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
     return render_unauthorized if encrypted_payload.nil? || encrypted_payload.empty?
 
     begin
-      @decrypted_body = JWE.decrypt(encrypted_payload, jwe_key)
+      @decrypted_body = JSON.parse(JWE.decrypt(encrypted_payload, jwe_key), symbolize_names: true)
     rescue JWE::DecodeError => e
       logger.info("returning unauthorized due to JWE::DecodeError '#{e}'")
       render_unauthorized
