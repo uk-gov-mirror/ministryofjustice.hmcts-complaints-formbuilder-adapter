@@ -7,13 +7,18 @@ module Presenter
     def optics_payload
       {
         Team: @data.fetch(:complaint_location, 'INBOX'),
-        RequestDate: @data.fetch(:submissionDate, Date.today),
+        RequestDate: request_date,
         Details: @data.fetch(:complaint_details, ''),
         Reference: @data.fetch(:case_number, '')
       }.merge(constant_data, customer_data)
     end
 
     private
+
+    def request_date
+      time = @data.fetch(:submissionDate, Time.now.nsec.to_s)
+      Time.strptime(time, '%N').strftime('%Y-%m-%d')
+    end
 
     def customer_data
       {
