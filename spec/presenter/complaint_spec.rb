@@ -16,7 +16,7 @@ describe Presenter::Complaint do
         'county': 'London',
         'postcode': 'SW1H 9AJ',
         'complaint_details': 'I lost my case',
-        'complaint_location': '1021',
+        'complaint_location': '1001',
         'submissionDate': '1568199892316',
         'case_number': '12345'
       }
@@ -29,7 +29,7 @@ describe Presenter::Complaint do
       Type: 'Complaint',
       Format: 'json',
       RequestDate: '1568199892316',
-      Team: '1021',
+      Team: '1001',
       Reference: '12345',
       "Customer.FirstName": 'Jim',
       "Customer.Surname": 'Complainer',
