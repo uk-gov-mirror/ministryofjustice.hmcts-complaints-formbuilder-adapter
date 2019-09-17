@@ -33,8 +33,7 @@ module Presenter
         db: 'hmcts',
         Type: 'Complaint',
         Format: 'json',
-        RequestMethod: 'Form',
-        "Case.ContactMethod": 'Online - gov.uk'
+        RequestMethod: 'Online - gov.uk'
       }
     end
   end
