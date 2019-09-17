@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe Presenter::Complaint do
   let(:input) do
     {
@@ -28,7 +30,7 @@ describe Presenter::Complaint do
       Format: 'json',
       RequestMethod: 'Form',
       RequestDate: '1568199892316',
-      Team: 'INBOX',
+      Team: '1021',
       Reference: '12345',
       "Customer.FirstName": 'Jim',
       "Customer.Surname": 'Complainer',
@@ -39,7 +41,6 @@ describe Presenter::Complaint do
       "Customer.Email": 'test@test.com',
       "Customer.Phone": '07548733456',
       Details: 'I lost my case',
-      Location: '1021',
       "Case.ContactMethod": 'Online - gov.uk'
     }
   end
@@ -76,8 +77,7 @@ describe Presenter::Complaint do
         "Customer.Postcode": '',
         "Customer.Email": '',
         "Customer.Phone": '',
-        Details: '',
-        Location: ''
+        Details: ''
       }
     end
 
