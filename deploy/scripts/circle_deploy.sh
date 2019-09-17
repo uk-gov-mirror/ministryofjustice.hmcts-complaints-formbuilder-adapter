@@ -4,7 +4,7 @@ set -e -u -o pipefail
 
 CONFIG_FILE="/tmp/helm_deploy.yaml"
 
-image_tag=$1
+git_sha_tag=$1
 environment_name=$2
 kube_token=$3
 
@@ -22,7 +22,8 @@ deploy_with_secrets() {
     kubectl config use-context "circleci_${environment_name}"
 
     helm template deploy/ \
-         --set imagetag=$image_tag \
+         --set app_image_tag="APP_${git_sha_tag}" \
+         --set worker_image_tag="WORKER_${git_sha_tag}" \
          --set environmentName=$environment_name \
          > $CONFIG_FILE
 
