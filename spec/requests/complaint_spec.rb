@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe 'Submitting a complaint', type: :request do
   include ActiveJob::TestHelper
 
@@ -25,16 +27,14 @@ describe 'Submitting a complaint', type: :request do
 
   let(:expected_optics_payload) do
     {
+      Team: 'INBOX',
       RequestDate: Date.today,
       Details: '',
-      Location: '',
       Reference: '',
       db: 'hmcts',
       Type: 'Complaint',
       Format: 'json',
-      RequestMethod: 'Form',
-      Team: 'INBOX',
-      'Case.ContactMethod': 'Online - gov.uk',
+      RequestMethod: 'Online - gov.uk',
       'Customer.FirstName': '',
       'Customer.Surname': '',
       'Customer.Address': '',

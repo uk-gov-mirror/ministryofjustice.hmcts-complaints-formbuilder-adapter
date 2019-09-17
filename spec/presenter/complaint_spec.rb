@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 describe Presenter::Complaint do
   let(:input) do
     {
@@ -14,7 +16,7 @@ describe Presenter::Complaint do
         'county': 'London',
         'postcode': 'SW1H 9AJ',
         'complaint_details': 'I lost my case',
-        'complaint_location': '1021',
+        'complaint_location': '1001',
         'submissionDate': '1568199892316',
         'case_number': '12345'
       }
@@ -26,9 +28,8 @@ describe Presenter::Complaint do
       db: 'hmcts',
       Type: 'Complaint',
       Format: 'json',
-      RequestMethod: 'Form',
       RequestDate: '1568199892316',
-      Team: 'INBOX',
+      Team: '1001',
       Reference: '12345',
       "Customer.FirstName": 'Jim',
       "Customer.Surname": 'Complainer',
@@ -39,8 +40,7 @@ describe Presenter::Complaint do
       "Customer.Email": 'test@test.com',
       "Customer.Phone": '07548733456',
       Details: 'I lost my case',
-      Location: '1021',
-      "Case.ContactMethod": 'Online - gov.uk'
+      RequestMethod: 'Online - gov.uk'
     }
   end
 
@@ -64,10 +64,9 @@ describe Presenter::Complaint do
         Type: 'Complaint',
         Format: 'json',
         Reference: '',
-        RequestMethod: 'Form',
+        RequestMethod: 'Online - gov.uk',
         RequestDate: Date.today,
         Team: 'INBOX',
-        "Case.ContactMethod": 'Online - gov.uk',
         "Customer.FirstName": '',
         "Customer.Surname": '',
         "Customer.Address": '',
@@ -76,8 +75,7 @@ describe Presenter::Complaint do
         "Customer.Postcode": '',
         "Customer.Email": '',
         "Customer.Phone": '',
-        Details: '',
-        Location: ''
+        Details: ''
       }
     end
 

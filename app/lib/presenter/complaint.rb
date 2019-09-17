@@ -6,9 +6,9 @@ module Presenter
 
     def optics_payload
       {
+        Team: @data.fetch(:complaint_location, 'INBOX'),
         RequestDate: @data.fetch(:submissionDate, Date.today),
         Details: @data.fetch(:complaint_details, ''),
-        Location: @data.fetch(:complaint_location, ''),
         Reference: @data.fetch(:case_number, '')
       }.merge(constant_data, customer_data)
     end
@@ -33,9 +33,7 @@ module Presenter
         db: 'hmcts',
         Type: 'Complaint',
         Format: 'json',
-        RequestMethod: 'Form',
-        Team: 'INBOX',
-        "Case.ContactMethod": 'Online - gov.uk'
+        RequestMethod: 'Online - gov.uk'
       }
     end
   end
