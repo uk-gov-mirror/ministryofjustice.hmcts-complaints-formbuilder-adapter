@@ -26,6 +26,11 @@ spec:
         env:
         - name: RAILS_LOG_TO_STDOUT
           value: "true"
+        - name: OPTICS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: hmcts-complaints-formbuilder-adapter-secret
+              key: OPTICS_ENDPOINT
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
@@ -77,6 +82,11 @@ spec:
         env:
         - name: RAILS_LOG_TO_STDOUT
           value: "true"
+        - name: OPTICS_ENDPOINT
+          valueFrom:
+            secretKeyRef:
+              name: hmcts-complaints-formbuilder-adapter-secret
+              key: OPTICS_ENDPOINT
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
