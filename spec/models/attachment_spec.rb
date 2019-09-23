@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Attachment do
   describe '#save' do
+    subject(:attachment) do
+      described_class.new(params)
+    end
+
     let(:params) do
       {
         url: 'https://www.example.com/image.png',
@@ -10,18 +14,12 @@ RSpec.describe Attachment do
       }
     end
 
-    subject do
-      described_class.new(params)
-    end
-
     it 'saves a valid record' do
-      expect { subject.save }.to change(Attachment, :count).by(1)
+      expect { attachment.save }.to change(described_class, :count).by(1)
     end
 
     it 'generates identifier' do
-      expect(subject.identifier).to be_nil
-      subject.save
-      expect(subject.identifier).to_not be_nil
+      expect { attachment.save }.to change { attachment.identifier.nil? }.from(true).to(false)
     end
   end
 end

@@ -1,6 +1,6 @@
 module Usecase
   class SpawnAttachment
-    def initialize(klass: Attachment, params: params)
+    def initialize(klass: Attachment, params:)
       @klass = klass
       @params = params
     end

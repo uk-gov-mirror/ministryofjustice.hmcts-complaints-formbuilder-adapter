@@ -21,14 +21,18 @@ RSpec.describe Usecase::SpawnAttachments do
   end
 
   describe '#execute' do
-    subject do
+    subject(:spawn_attachments) do
       described_class.new(form_builder_payload: form_builder_payload)
     end
 
-    it 'creates an attachment record with correct params' do
-      expect(Usecase::SpawnAttachment).to receive(:new).twice.and_call_original
+    let(:spawn_attachment) { instance_double('Usecase::SpawnAttachment', call: true) }
 
-      subject.call
+    it 'creates an attachment record with correct params' do
+      allow(Usecase::SpawnAttachment).to receive(:new).twice.and_return(spawn_attachment)
+
+      spawn_attachments.call
+
+      expect(Usecase::SpawnAttachment).to have_received(:new).twice
     end
   end
 end
