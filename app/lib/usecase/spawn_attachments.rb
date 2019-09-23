@@ -5,8 +5,8 @@ module Usecase
     end
 
     def call
-      form_builder_payload.dig(:submissionAnswers, :attachments).each do |attachment|
-        usecase = Usecase::SpawnAttachment.new(params: attachment)
+      attachments.each do |attachment|
+        usecase = SpawnAttachment.new(params: attachment)
         usecase.call
       end
     end
@@ -14,5 +14,9 @@ module Usecase
     private
 
     attr_reader :form_builder_payload
+
+    def attachments
+      form_builder_payload.dig(:submissionAnswers, :attachments) || []
+    end
   end
 end
