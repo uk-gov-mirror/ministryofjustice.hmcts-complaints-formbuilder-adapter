@@ -2,12 +2,10 @@ require: rubocop-rspec
 
 AllCops:
   Exclude:
-  - '.bundle/**'
-  - 'bin/**'
-
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - db/schema.rb
+  - .bundle/**
+  - bin/**
+  - db/schema.rb
+  - Guardfile
 
 Style/Documentation:
   Enabled: false
@@ -15,33 +13,14 @@ Style/Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
-Style/NumericLiterals:
-  Exclude:
-    - db/schema.rb
-
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - Guardfile
-
-Style/StringLiterals:
-  Exclude:
-    - db/schema.rb
-    - Guardfile
-
 Style/SymbolArray:
   Enabled: false
-
-Style/WordArray:
-  Exclude:
-    - db/schema.rb
 
 Metrics/LineLength:
   Enabled: false
 
 Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
-  Exclude:
-    - Guardfile
 
 Metrics/MethodLength:
   Enabled: true
