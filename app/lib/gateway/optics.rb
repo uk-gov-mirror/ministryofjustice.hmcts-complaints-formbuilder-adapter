@@ -24,7 +24,7 @@ module Gateway
 
     def post(body:, bearer_token:)
       res = HTTParty.post(@post_case_url, headers: headers(bearer_token), body: body)
-      Rails.logger.warning(res.body)
+      Rails.logger.warn(res.body)
       res
     end
 
