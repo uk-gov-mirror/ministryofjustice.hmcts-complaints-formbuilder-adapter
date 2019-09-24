@@ -16,7 +16,7 @@ module Usecase
     attr_reader :form_builder_payload
 
     def attachments
-      form_builder_payload.dig(:submissionAnswers, :attachments) || []
+      form_builder_payload.fetch(:attachments)
     end
   end
 end

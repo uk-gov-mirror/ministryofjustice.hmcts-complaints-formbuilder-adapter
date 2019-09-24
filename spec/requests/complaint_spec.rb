@@ -55,7 +55,8 @@ describe 'Submitting a complaint', type: :request do
         fullname: 'Full Name',
         email: 'bob@example.com',
         is_address_uk: 'yes'
-      }
+      },
+      attachments: []
     }.to_json
   end
 

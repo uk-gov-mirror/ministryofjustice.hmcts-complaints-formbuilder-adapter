@@ -3,20 +3,19 @@ require 'rails_helper'
 RSpec.describe Usecase::SpawnAttachments do
   let(:form_builder_payload) do
     {
-      submissionAnswers: {
-        attachments: [
-          {
-            url: 'https://www.example.com/image.png',
-            encryption_key: 'some_encryption_key',
-            encryption_iv: 'some_encryption_iv'
-          },
-          {
-            url: 'https://www.example.com/document.pdf',
-            encryption_key: 'some_encryption_key',
-            encryption_iv: 'some_encryption_iv'
-          }
-        ]
-      }
+      submissionAnswers: {},
+      attachments: [
+        {
+          url: 'https://www.example.com/image.png',
+          encryption_key: 'some_encryption_key',
+          encryption_iv: 'some_encryption_iv'
+        },
+        {
+          url: 'https://www.example.com/document.pdf',
+          encryption_key: 'some_encryption_key',
+          encryption_iv: 'some_encryption_iv'
+        }
+      ]
     }
   end
 
