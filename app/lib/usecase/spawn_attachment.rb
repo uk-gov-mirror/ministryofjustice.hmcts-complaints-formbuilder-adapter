@@ -1,7 +1,6 @@
 module Usecase
   class SpawnAttachment
-    def initialize(klass: Attachment, params:)
-      @klass = klass
+    def initialize(params:)
       @params = params
     end
 
@@ -11,10 +10,10 @@ module Usecase
 
     private
 
-    attr_reader :klass, :params
+    attr_reader :params
 
     def new_attachment
-      @new_attachment ||= klass.new(params)
+      @new_attachment ||= Attachment.new(params)
     end
   end
 end
