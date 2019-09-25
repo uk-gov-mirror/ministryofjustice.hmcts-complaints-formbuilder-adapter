@@ -15,6 +15,7 @@ describe SendComplaintJob, type: :job do
     let(:create_token) { instance_spy(Usecase::Optics::GenerateJwtToken) }
     let(:get_bearer_token) { instance_spy(Usecase::Optics::GetBearerToken) }
     let(:create_case) { instance_spy(Usecase::Optics::CreateCase) }
+    let(:spawn_attachments) { instance_spy(Usecase::SpawnAttachments) }
     let(:gateway) { instance_spy(Gateway::Optics) }
     let(:input) { { 'submissionAnswers': {} } }
 
@@ -33,6 +34,9 @@ describe SendComplaintJob, type: :job do
         optics_gateway: be_an_instance_of(Gateway::Optics),
         presenter: gateway,
         get_bearer_token: get_bearer_token
+      )
+      allow(Usecase::SpawnAttachments).to receive(:new).and_return(spawn_attachments).with(
+        form_builder_payload: input
       )
     end
 

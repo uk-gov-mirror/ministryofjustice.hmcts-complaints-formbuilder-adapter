@@ -2,8 +2,10 @@ require: rubocop-rspec
 
 AllCops:
   Exclude:
-  - '.bundle/**'
-  - 'bin/**'
+  - .bundle/**
+  - bin/**
+  - db/schema.rb
+  - Guardfile
 
 Style/Documentation:
   Enabled: false
