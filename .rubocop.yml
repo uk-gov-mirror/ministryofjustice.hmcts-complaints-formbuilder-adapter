@@ -20,7 +20,7 @@ Metrics/LineLength:
   Enabled: false
 
 Metrics/BlockLength:
-  ExcludedMethods: ['describe', 'context']
+  ExcludedMethods: ['describe', 'context', 'let']
 
 Metrics/MethodLength:
   Enabled: true

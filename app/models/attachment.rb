@@ -1,7 +1,13 @@
 require 'securerandom'
 
 class Attachment < ApplicationRecord
-  before_validation :generate_identifier
+  include Rails.application.routes.url_helpers
+
+  after_initialize :generate_identifier
+
+  def exposed_url
+    attachment_url(id: identifier)
+  end
 
   private
 

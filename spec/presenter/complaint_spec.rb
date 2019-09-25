@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 describe Presenter::Complaint do
-  let(:input) do
+  subject(:presenter) do
+    described_class.new(form_builder_payload: input_payload,
+                        attachments: attachments)
+  end
+
+  let(:input_payload) do
     {
       'serviceSlug': 'my-form',
       'submissionId': '1e937616-dd0b-4bc3-8c67-40e4ffd54f78',
@@ -23,6 +28,21 @@ describe Presenter::Complaint do
     }
   end
 
+  let(:attachments) do
+    [
+      Attachment.new(
+        filename: 'image.png',
+        mimetype: 'image/png',
+        identifier: '3c535282-6ebb-41c5-807e-74394ef036b1'
+      ),
+      Attachment.new(
+        filename: 'document.pdf',
+        mimetype: 'application/pdf',
+        identifier: '3c535282-6ebb-41c5-807e-74394ef036b2'
+      )
+    ]
+  end
+
   let(:output) do
     {
       db: 'hmcts',
@@ -40,17 +60,29 @@ describe Presenter::Complaint do
       "Customer.Email": 'test@test.com',
       "Customer.Phone": '07548733456',
       Details: 'I lost my case',
-      RequestMethod: 'Online - gov.uk'
+      RequestMethod: 'Online - gov.uk',
+      "Document1.Name": 'image.png',
+      "Document1.URL": 'https://example.com/v1/attachments/3c535282-6ebb-41c5-807e-74394ef036b1',
+      "Document1.MimeType": 'image/png',
+      "Document1.URLLoadContent": true,
+      "Document2.Name": 'document.pdf',
+      "Document2.URL": 'https://example.com/v1/attachments/3c535282-6ebb-41c5-807e-74394ef036b2',
+      "Document2.MimeType": 'application/pdf',
+      "Document2.URLLoadContent": true
     }
   end
 
   it 'generates the correct hash' do
-    presenter = described_class.new(form_builder_payload: input)
     expect(presenter.optics_payload).to eq(output)
   end
 
   context 'with missing data' do
-    let(:invalid_input) do
+    subject(:presenter) do
+      described_class.new(form_builder_payload: invalid_input_payload,
+                          attachments: [])
+    end
+
+    let(:invalid_input_payload) do
       {
         'serviceSlug': 'my-form',
         'submissionId': '1e937616-dd0b-4bc3-8c67-40e4ffd54f78',
@@ -81,7 +113,6 @@ describe Presenter::Complaint do
     end
 
     it 'still returns a hash without failures' do
-      presenter = described_class.new(form_builder_payload: invalid_input)
       expect(presenter.optics_payload).to eq(output)
     end
   end

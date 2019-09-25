@@ -5,7 +5,7 @@ module Usecase
     end
 
     def call
-      attachments.each do |attachment|
+      attachments.map do |attachment|
         usecase = SpawnAttachment.new(params: attachment)
         usecase.call
       end
