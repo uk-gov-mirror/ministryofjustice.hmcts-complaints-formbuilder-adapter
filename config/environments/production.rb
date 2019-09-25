@@ -97,3 +97,7 @@ Rails.application.configure do
   config.x.optics.api_key = ENV.fetch('OPTICS_API_KEY')
   config.x.optics.endpoint = ENV.fetch('OPTICS_ENDPOINT', 'https://uat.icasework.com'.freeze)
 end
+
+Rails.application.routes.default_url_options ||= {}
+Rails.application.routes.default_url_options[:host] = ENV['HOST']
+Rails.application.routes.default_url_options[:protocol] = 'https'
