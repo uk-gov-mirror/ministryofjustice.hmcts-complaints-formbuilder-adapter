@@ -61,3 +61,5 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
 end
+
+Rails.application.routes.default_url_options = { protocol: 'https', host: 'example.com' }

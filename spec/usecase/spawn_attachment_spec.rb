@@ -21,5 +21,9 @@ RSpec.describe Usecase::SpawnAttachment do
 
       expect(attachment_double).to have_received(:save)
     end
+
+    it 'return attachment object' do
+      expect(spawn_attachment.call).to be_kind_of(Attachment)
+    end
   end
 end

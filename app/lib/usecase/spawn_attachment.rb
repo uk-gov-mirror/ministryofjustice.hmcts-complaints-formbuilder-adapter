@@ -6,6 +6,7 @@ module Usecase
 
     def call
       new_attachment.save
+      new_attachment
     end
 
     private

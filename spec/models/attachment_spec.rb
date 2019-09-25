@@ -19,7 +19,7 @@ RSpec.describe Attachment do
     end
 
     it 'generates identifier' do
-      expect { attachment.save }.to change { attachment.identifier.nil? }.from(true).to(false)
+      expect(attachment.identifier).to be_present
     end
   end
 end
