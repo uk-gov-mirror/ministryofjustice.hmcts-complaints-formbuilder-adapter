@@ -82,6 +82,8 @@ spec:
         image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/form-builder/hmcts-complaints-formbuilder-adapter:{{ .Values.worker_image_tag }}
         imagePullPolicy: Always
         env:
+        - name: HOST
+          value: hmcts-complaints-formbuilder-adapter-{{ .Values.environmentName }}.apps.live-1.cloud-platform.service.justice.gov.uk
         - name: RAILS_LOG_TO_STDOUT
           value: "true"
         - name: OPTICS_ENDPOINT
