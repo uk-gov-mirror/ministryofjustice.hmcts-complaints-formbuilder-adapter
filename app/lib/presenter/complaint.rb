@@ -7,7 +7,7 @@ module Presenter
 
     def optics_payload
       {
-        Team: submission_answers.fetch(:complaint_location, 'INBOX'),
+        Team: submission_answers.fetch(:complaint_location),
         RequestDate: request_date,
         Details: submission_answers.fetch(:complaint_details, ''),
         Reference: submission_answers.fetch(:case_number, '')

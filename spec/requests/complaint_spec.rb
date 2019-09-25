@@ -29,7 +29,7 @@ describe 'Submitting a complaint', type: :request do
 
   let(:expected_optics_payload) do
     {
-      Team: 'INBOX',
+      Team: '111',
       RequestDate: Date.today.to_s,
       Details: '',
       Reference: '',
@@ -60,7 +60,8 @@ describe 'Submitting a complaint', type: :request do
       {
         fullname: 'Full Name',
         email: 'bob@example.com',
-        is_address_uk: 'yes'
+        is_address_uk: 'yes',
+        'complaint_location': '111'
       },
       attachments: [{
         url: 'https://example.com/s3/image.png',

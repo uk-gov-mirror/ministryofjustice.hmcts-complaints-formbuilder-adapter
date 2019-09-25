@@ -87,6 +87,7 @@ describe Presenter::Complaint do
         'serviceSlug': 'my-form',
         'submissionId': '1e937616-dd0b-4bc3-8c67-40e4ffd54f78',
         'submissionAnswers': {
+          'complaint_location': '1001'
         }
       }
     end
@@ -99,7 +100,7 @@ describe Presenter::Complaint do
         Reference: '',
         RequestMethod: 'Online - gov.uk',
         RequestDate: Date.today.to_s,
-        Team: 'INBOX',
+        Team: '1001',
         "Customer.FirstName": '',
         "Customer.Surname": '',
         "Customer.Address": '',
