@@ -37,6 +37,7 @@ describe 'Submitting a complaint', type: :request do
       Type: 'Complaint',
       Format: 'json',
       RequestMethod: 'Online - gov.uk',
+      "CaseDetailsComplaint.WhoSubmittedTheComplaint": 'Contact is the complainant',
       'Customer.FirstName': '',
       'Customer.Surname': '',
       'Customer.Address': '',
