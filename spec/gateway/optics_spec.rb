@@ -77,5 +77,29 @@ describe Gateway::Optics do
         body: {}
       ).once
     end
+
+    context 'when there is a failing status code returned' do
+      before do
+        stub_request(:post, "#{endpoint}/createcase?db=hmcts").to_return(
+          status: 500,
+          body: '<html>errors return xml body</error>',
+          headers: { 'error-header': 'some message' }
+        )
+        Timecop.freeze(Time.parse('2019-09-11 15:34:46 +0000'))
+      end
+
+      it 'checks the return code of the request' do
+        expect do
+          gateway.post(body: {}, bearer_token: bearer_token)
+        end.to raise_error(Gateway::Optics::ClientError)
+      end
+
+      it 'returns the status code and headers in an error' do
+        expect do
+          gateway.post(body: {}, bearer_token: bearer_token)
+        end.to raise_error(Gateway::Optics::ClientError)
+          .with_message(%r{\[OPTICS API error: Received 500 response, with headers {"error-header"=>\["some message"\]}\] <html>errors return xml body</error>})
+      end
+    end
   end
 end
