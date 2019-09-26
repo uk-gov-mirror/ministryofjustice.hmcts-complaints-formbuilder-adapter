@@ -33,7 +33,3 @@ module HmctsComplaintsFormBuilderAdapter
     config.auth = {}
   end
 end
-
-Rails.application.default_url_options ||= {}
-Rails.application.default_url_options[:host] = ENV['HOST']
-Rails.application.default_url_options[:protocol] = 'https'
