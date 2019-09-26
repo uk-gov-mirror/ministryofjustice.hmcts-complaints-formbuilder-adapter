@@ -57,7 +57,7 @@ module Presenter
         Type: 'Complaint',
         Format: 'json',
         RequestMethod: 'Online - gov.uk',
-        'CaseDetailsComplaint.WhoSubmittedTheComplaint': 'Contact is the complainant'
+        'PartyContextManageCases': 'Contact is the complainant'
       }
     end
   end
