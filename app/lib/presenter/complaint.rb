@@ -56,7 +56,8 @@ module Presenter
         db: 'hmcts',
         Type: 'Complaint',
         Format: 'json',
-        RequestMethod: 'Online - gov.uk'
+        RequestMethod: 'Online - gov.uk',
+        'CaseDetailsComplaint.WhoSubmittedTheComplaint': 'Contact is the complainant'
       }
     end
   end
