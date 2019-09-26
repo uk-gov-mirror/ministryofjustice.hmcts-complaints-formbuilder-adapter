@@ -23,6 +23,7 @@ module Gateway
     end
 
     def post(body:, bearer_token:)
+      Rails.logger.debug("About to post body to optics ->  #{body}")
       res = HTTParty.post(@post_case_url, headers: headers(bearer_token), body: body)
       Rails.logger.warn(res.body)
       res
