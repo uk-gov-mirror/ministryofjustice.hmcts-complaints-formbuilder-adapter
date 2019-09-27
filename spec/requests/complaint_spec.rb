@@ -37,7 +37,7 @@ describe 'Submitting a complaint', type: :request do
       Type: 'Complaint',
       Format: 'json',
       RequestMethod: 'Online - gov.uk',
-      "PartyContextManageCases": 'Contact is the complainant',
+      "PartyContextManageCases": 'Main',
       'Customer.FirstName': '',
       'Customer.Surname': '',
       'Customer.Address': '',
