@@ -1,0 +1,66 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: fb-datastore-cron-db-sweeper-{{ .Values.environmentName }}
+  namespace: hmcts-complaints-formbuilder-adapter-{{ .Values.environmentName }}
+spec:
+  schedule: "0 * * * *"
+  successfulJobsHistoryLimit: 0
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hmcts-complaints-formbuilder-adapter-{{ .Values.environmentName }}
+            image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/form-builder/hmcts-complaints-formbuilder-adapter:{{ .Values.app_image_tag }}
+            args:
+            - /bin/sh
+            - -c
+            - bundle exec rake sweep:attachments'
+            securityContext:
+              runAsUser: 1001
+            imagePullPolicy: Always
+            envFrom:
+              - configMapRef:
+                  name: hmcts-complaints-formbuilder-adapter-env-{{ .Values.environmentName }}
+            env:
+              - name: HOST
+                value: hmcts-complaints-formbuilder-adapter-{{ .Values.environmentName }}.apps.live-1.cloud-platform.service.justice.gov.uk
+              - name: RAILS_LOG_TO_STDOUT
+                value: "true"
+              - name: OPTICS_ENDPOINT
+                valueFrom:
+                  secretKeyRef:
+                    name: hmcts-complaints-formbuilder-adapter-secret
+                    key: OPTICS_ENDPOINT
+              - name: SECRET_KEY_BASE
+                valueFrom:
+                  secretKeyRef:
+                    name: hmcts-complaints-formbuilder-adapter-secret
+                    key: SECRET_KEY_BASE
+              - name: JWE_SHARED_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: hmcts-complaints-formbuilder-adapter-secret
+                    key: JWE_SHARED_KEY
+              - name: OPTICS_SECRET_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: hmcts-complaints-formbuilder-adapter-secret
+                    key: OPTICS_SECRET_KEY
+              - name: OPTICS_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: hmcts-complaints-formbuilder-adapter-secret
+                    key: OPTICS_API_KEY
+              - name: SENTRY_DSN
+                valueFrom:
+                  secretKeyRef:
+                    name: hmcts-complaints-formbuilder-adapter-secret
+                    key: SENTRY_DSN
+              - name: DATABASE_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+                    key: url
+          restartPolicy: Never
