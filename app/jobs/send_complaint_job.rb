@@ -12,6 +12,8 @@ class SendComplaintJob < ApplicationJob
                                           attachments: attachments),
       get_bearer_token: bearer_token
     ).execute
+
+    record_successful_submission
   end
 
   private
@@ -33,5 +35,9 @@ class SendComplaintJob < ApplicationJob
 
   def gateway
     Gateway::Optics.new(endpoint: Rails.configuration.x.optics.endpoint)
+  end
+
+  def record_successful_submission
+    ProcessedSubmission.create
   end
 end
