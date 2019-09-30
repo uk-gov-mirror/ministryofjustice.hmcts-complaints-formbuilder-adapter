@@ -138,7 +138,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     parallel (1.17.0)
-    parser (2.6.4.0)
+    parser (2.6.4.1)
       ast (~> 2.4.0)
     pg (1.1.4)
     pry (0.12.2)
@@ -209,8 +209,8 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-rspec (1.35.0)
-      rubocop (>= 0.60.0)
+    rubocop-rspec (1.36.0)
+      rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     safe_yaml (1.0.5)
@@ -261,7 +261,7 @@ DEPENDENCIES
   rails (~> 6.0.0)
   rspec-rails
   rubocop (~> 0.74.0)
-  rubocop-rspec (~> 1.35)
+  rubocop-rspec (~> 1.36)
   sentry-raven (~> 2.11)
   spring
   spring-watcher-listen (~> 2.0.0)
