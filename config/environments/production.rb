@@ -96,6 +96,8 @@ Rails.application.configure do
   config.x.optics.secret_key = ENV.fetch('OPTICS_SECRET_KEY')
   config.x.optics.api_key = ENV.fetch('OPTICS_API_KEY')
   config.x.optics.endpoint = ENV.fetch('OPTICS_ENDPOINT', 'https://uat.icasework.com'.freeze)
+  config.x.metrics.password = ENV.fetch('METRICS_AUTH_PASSWORD')
+  config.x.metrics.username = ENV.fetch('METRICS_AUTH_USERNAME')
 end
 
 Rails.application.routes.default_url_options ||= {}

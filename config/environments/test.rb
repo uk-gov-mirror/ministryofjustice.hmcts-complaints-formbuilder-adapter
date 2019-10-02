@@ -47,6 +47,8 @@ Rails.application.configure do
   config.x.optics.api_key =
     ENV.fetch('OPTICS_API_KEY', 'some_optics_api_key'.freeze)
 
+  config.x.metrics.username = 'dhh'
+  config.x.metrics.password = 'secret'
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 end

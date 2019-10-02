@@ -1,0 +1,11 @@
+# TYPE delayed_jobs_successful gauge
+# HELP delayed_jobs_successful Number of successful jobs
+delayed_jobs_successful <%= @successful_job_stats %>
+
+# TYPE delayed_jobs_pending gauge
+# HELP delayed_jobs_pending Number of pending jobs
+delayed_jobs_pending <%= @pending_job_stats %>
+
+# TYPE delayed_jobs_failed gauge
+# HELP delayed_jobs_failed Number of jobs failed
+delayed_jobs_failed <%= @failed_job_stats %>

@@ -1,15 +1,6 @@
 Rails.application.configure do
-  # Settings specified here will take precedence over those in config/application.rb.
-
-  # In the development environment your application's code is reloaded on
-  # every request. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-
-  # Do not eager load code on boot.
   config.eager_load = false
-
-  # Show full error reports.
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
@@ -46,8 +37,9 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.shared_key = ENV.fetch('DEVELOPMENT_JWE_SHARED_KEY', '5d6dc7fc083ea4f0'.freeze)
-
   config.x.optics.secret_key = ENV.fetch('OPTICS_SECRET_KEY', SecureRandom.hex(8).freeze)
   config.x.optics.api_key = ENV.fetch('OPTICS_API_KEY', SecureRandom.hex(8).freeze)
   config.x.optics.endpoint = ENV.fetch('OPTICS_ENDPOINT', 'https://uat.icasework.com'.freeze)
+  config.x.metrics.password = ENV.fetch('METRICS_AUTH_PASSWORD', 'dhh')
+  config.x.metrics.username = ENV.fetch('METRICS_AUTH_USERNAME', 'secret')
 end
