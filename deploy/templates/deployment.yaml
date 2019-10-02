@@ -63,6 +63,16 @@ spec:
             secretKeyRef:
               name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
               key: url
+        - name: METRICS_AUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              key: METRICS_AUTH_PASSWORD
+        - name: METRICS_AUTH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              key: METRICS_AUTH_USERNAME
 ---
 # workers
 apiVersion: extensions/v1beta1
@@ -121,3 +131,13 @@ spec:
             secretKeyRef:
               name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
               key: url
+        - name: METRICS_AUTH_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              key: METRICS_AUTH_PASSWORD
+        - name: METRICS_AUTH_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              key: METRICS_AUTH_USERNAME
