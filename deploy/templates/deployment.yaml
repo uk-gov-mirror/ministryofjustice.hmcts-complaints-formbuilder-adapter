@@ -66,12 +66,12 @@ spec:
         - name: METRICS_AUTH_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              name: hmcts-complaints-formbuilder-adapter-secret
               key: METRICS_AUTH_PASSWORD
         - name: METRICS_AUTH_USERNAME
           valueFrom:
             secretKeyRef:
-              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              name: hmcts-complaints-formbuilder-adapter-secret
               key: METRICS_AUTH_USERNAME
 ---
 # workers
@@ -134,10 +134,10 @@ spec:
         - name: METRICS_AUTH_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              name: hmcts-complaints-formbuilder-adapter-secret
               key: METRICS_AUTH_PASSWORD
         - name: METRICS_AUTH_USERNAME
           valueFrom:
             secretKeyRef:
-              name: rds-instance-hmcts-complaints-adapter-{{ .Values.environmentName }}
+              name: hmcts-complaints-formbuilder-adapter-secret
               key: METRICS_AUTH_USERNAME
