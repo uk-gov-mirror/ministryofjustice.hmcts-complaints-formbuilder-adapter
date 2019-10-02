@@ -1,0 +1,2 @@
+class ProcessedSubmission < ApplicationRecord
+end

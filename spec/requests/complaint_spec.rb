@@ -100,5 +100,9 @@ describe 'Submitting a complaint', type: :request do
         body: expected_optics_payload
       ).once
     end
+
+    it 'records that there was a successful submission' do
+      expect(ProcessedSubmission.count).to eq(1)
+    end
   end
 end
