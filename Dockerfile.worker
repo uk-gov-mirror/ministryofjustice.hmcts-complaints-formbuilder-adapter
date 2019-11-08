@@ -12,8 +12,8 @@ ENV HOME /app
 
 COPY Gemfile* .ruby-version ./
 
-RUN gem install bundler
-RUN bundle install --no-cache
+ARG BUNDLE_FLAGS="--jobs 2 --no-cache --without development test"
+RUN bundle install ${BUNDLE_FLAGS}
 
 COPY . .
 

@@ -9,7 +9,7 @@ docker-down:
 
 .PHONY: docker-build
 docker-build:
-	$(COMPOSE) build
+	$(COMPOSE) build --build-arg BUNDLE_FLAGS='--jobs 2 --no-cache'
 
 .PHONY: shell
 shell: docker-down docker-build
