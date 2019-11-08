@@ -6,7 +6,6 @@ ARG UID='1001'
 RUN addgroup -S appgroup && \
   adduser -u ${UID} -S appuser -G appgroup
 
-
 WORKDIR /app
 ENV HOME /app
 
