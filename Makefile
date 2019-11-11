@@ -9,7 +9,7 @@ docker-down:
 
 .PHONY: docker-build
 docker-build:
-	$(COMPOSE) build
+	$(COMPOSE) build --parallel
 
 .PHONY: shell
 shell: docker-down docker-build

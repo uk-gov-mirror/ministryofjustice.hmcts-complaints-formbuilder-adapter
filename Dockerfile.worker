@@ -1,23 +1,30 @@
 FROM ruby:2.6.4-alpine3.9
 
-ARG UID
-
 RUN apk add build-base postgresql-contrib postgresql-dev bash tzdata
 
-RUN addgroup -g 1001 -S appgroup && \
-  adduser -u 1001 -S appuser -G appgroup
+ARG UID='1001'
+RUN addgroup -S appgroup && \
+  adduser -u ${UID} -S appuser -G appgroup
 
 WORKDIR /app
 ENV HOME /app
 
-COPY Gemfile* .ruby-version ./
+RUN chown appuser:appgroup /app
+
+COPY --chown=appuser:appgroup Gemfile Gemfile.lock .ruby-version ./
 
 RUN gem install bundler
-RUN bundle install --no-cache
 
-COPY . .
+ARG BUNDLE_FLAGS="--jobs 2 --no-cache --without development test"
+RUN bundle install ${BUNDLE_FLAGS}
 
-RUN chown -R 1001:appgroup /app
+COPY --chown=appuser:appgroup . .
+
+ADD --chown=appuser:appgroup https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem ./rds-ca-2019-root.pem
+ADD --chown=appuser:appgroup https://s3.amazonaws.com/rds-downloads/rds-ca-2015-root.pem ./rds-ca-2015-root.pem
+RUN cat ./rds-ca-2019-root.pem > ./rds-ca-bundle-root.crt
+RUN cat ./rds-ca-2015-root.pem >> ./rds-ca-bundle-root.crt
+RUN chown appuser:appgroup ./rds-ca-bundle-root.crt
 
 USER 1001
 

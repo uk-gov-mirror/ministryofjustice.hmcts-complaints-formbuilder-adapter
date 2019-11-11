@@ -6,7 +6,6 @@ ARG UID='1001'
 RUN addgroup -S appgroup && \
   adduser -u ${UID} -S appuser -G appgroup
 
-
 WORKDIR /app
 ENV HOME /app
 
@@ -16,10 +15,16 @@ COPY --chown=appuser:appgroup Gemfile Gemfile.lock .ruby-version ./
 
 RUN gem install bundler
 
-ARG BUNDLE_ARGS='--without test development'
-RUN bundle install --no-cache ${BUNDLE_ARGS}
+ARG BUNDLE_FLAGS="--jobs 2 --no-cache --without development test"
+RUN bundle install ${BUNDLE_FLAGS}
 
 COPY --chown=appuser:appgroup . .
+
+ADD --chown=appuser:appgroup https://s3.amazonaws.com/rds-downloads/rds-ca-2019-root.pem ./rds-ca-2019-root.pem
+ADD --chown=appuser:appgroup https://s3.amazonaws.com/rds-downloads/rds-ca-2015-root.pem ./rds-ca-2015-root.pem
+RUN cat ./rds-ca-2019-root.pem > ./rds-ca-bundle-root.crt
+RUN cat ./rds-ca-2015-root.pem >> ./rds-ca-bundle-root.crt
+RUN chown appuser:appgroup ./rds-ca-bundle-root.crt
 
 ENV APP_PORT 3000
 EXPOSE $APP_PORT
