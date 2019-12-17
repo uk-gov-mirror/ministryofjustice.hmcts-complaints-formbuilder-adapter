@@ -21,15 +21,15 @@ spec: docker-down docker-build test lint
 
 .PHONY: test
 test: docker-down docker-build
-	$(COMPOSE) run --rm app rspec
+	$(COMPOSE) run --rm app bundle exec rspec
 
 .PHONY: lint
 lint:
-	$(COMPOSE) run --rm app rubocop
+	$(COMPOSE) run --rm app bundle exec rubocop
 
 .PHONY: fix
 fix:
-	$(COMPOSE) run --rm app rubocop -a
+	$(COMPOSE) run --rm app bundle exec rubocop -a
 
 .PHONY: serve
 serve: docker-down docker-build
