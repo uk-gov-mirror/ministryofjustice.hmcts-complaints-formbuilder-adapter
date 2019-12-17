@@ -12,10 +12,10 @@ jobs:
       - setup_remote_docker
       - run:
           name: lint
-          command: docker-compose run --rm app rubocop
+          command: docker-compose run --rm app bundle exec rubocop
       - run:
           name: test
-          command: docker-compose run --rm app rspec
+          command: docker-compose run --rm app bundle exec rspec
   deploy_staging:
     working_directory: ~/circle/git/hmcts-complaints-formbuilder-adapter
     docker:
