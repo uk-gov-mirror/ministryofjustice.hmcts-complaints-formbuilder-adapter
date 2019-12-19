@@ -14,7 +14,7 @@ docker-build:
 .PHONY: shell
 shell: docker-down docker-build
 	$(COMPOSE) up -d
-	$(COMPOSE) exec app sh
+	$(COMPOSE) exec app ash
 
 .PHONY: spec
 spec: docker-down docker-build test lint
