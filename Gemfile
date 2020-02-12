@@ -16,7 +16,7 @@ gem 'sentry-raven', '~> 2.13'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop', '~> 0.79.0'
-  gem 'rubocop-rspec', '~> 1.37'
+  gem 'rubocop-rspec', '~> 1.38'
 end
 
 group :test do
