@@ -99,7 +99,7 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    hashdiff (1.0.0)
+    hashdiff (1.0.1)
     httparty (0.18.0)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -234,7 +234,7 @@ GEM
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     unicode-display_width (1.6.1)
-    webmock (3.8.2)
+    webmock (3.8.3)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
@@ -266,7 +266,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   timecop (~> 0.9.1)
-  webmock (~> 3.8.2)
+  webmock (~> 3.8.3)
 
 RUBY VERSION
    ruby 2.6.4p104
