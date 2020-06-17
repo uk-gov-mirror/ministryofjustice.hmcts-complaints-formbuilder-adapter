@@ -58,6 +58,8 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: "form-builder/hmcts-complaints-formbuilder-adapter"
           tag: "APP_${CIRCLE_SHA1}"
+          requires:
+            - test
           filters:
             branches:
               only:
@@ -70,6 +72,8 @@ workflows:
           region: AWS_DEFAULT_REGION
           repo: "form-builder/hmcts-complaints-formbuilder-adapter"
           tag: "WORKER_${CIRCLE_SHA1}"
+          requires:
+            - test
           filters:
             branches:
               only:
