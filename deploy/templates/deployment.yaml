@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hmcts-complaints-formbuilder-adapter
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: hmcts-complaints-formbuilder-adapter
   template:
     metadata:
       labels:
@@ -75,12 +78,15 @@ spec:
               key: METRICS_AUTH_USERNAME
 ---
 # workers
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hmcts-complaints-formbuilder-adapter-worker
 spec:
   replicas: 2
+  selector:
+    matchLabels:
+      app: hmcts-complaints-formbuilder-adapter-worker
   template:
     metadata:
       labels:
