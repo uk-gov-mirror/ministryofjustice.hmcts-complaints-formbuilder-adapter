@@ -23,7 +23,6 @@ module Presenter
       Time.at(time.to_s.to_i / 1000).strftime('%Y-%m-%d')
     end
 
-    # rubocop:disable Metrics/AbcSize
     def customer_data
       {
         'Customer.FirstName': submission_answers.fetch(:first_name, ''),
@@ -36,7 +35,6 @@ module Presenter
         'Customer.Phone': submission_answers.fetch(:phone, '')
       }
     end
-    # rubocop:enable Metrics/AbcSize
 
     def attachments_data
       attachments.map.with_index do |attachment, index|
