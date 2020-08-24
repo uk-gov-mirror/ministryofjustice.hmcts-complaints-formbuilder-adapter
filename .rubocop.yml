@@ -27,3 +27,6 @@ Metrics/MethodLength:
   Enabled: true
   Exclude:
     - db/**/*
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
