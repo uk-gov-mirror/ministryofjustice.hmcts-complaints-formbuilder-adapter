@@ -93,7 +93,6 @@ workflows:
               only:
                 - master
                 - deploy-to-staging
-                - add-deploy-scripts
       - confirm_production_deploy:
           type: approval
           requires:
