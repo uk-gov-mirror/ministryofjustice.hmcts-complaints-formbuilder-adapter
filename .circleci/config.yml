@@ -30,8 +30,25 @@ jobs:
           fingerprints:
             - "7e:e7:44:be:a1:4b:4e:3c:56:65:3a:94:19:50:02:cc"
       - run:
+          name: Setup base environment variable
+          command: |
+            echo "export BUILD_SHA=$CIRCLE_SHA1" >> $BASH_ENV
+            echo "export SSH_FILE_FOR_SECRETS=~/.ssh/id_rsa_7ee744bea14b4e3c56653a94195002cc" >> $BASH_ENV
+      - run:
+          name: cloning deploy scripts
+          command: 'git clone git@github.com:ministryofjustice/fb-deploy.git deploy-scripts'
+      - run:
+          name: build and push docker images
+          environment:
+            ENVIRONMENT_NAME: staging
+          command: './deploy-scripts/bin/build'
+      - run:
           name: deploy to staging
-          command: './deploy/scripts/circle_deploy.sh $CIRCLE_SHA1 staging $KUBE_TOKEN_STAGING'
+          environment:
+            APPLICATION_NAME: hmcts-complaints-formbuilder-adapter
+            PLATFORM_ENV: staging
+            K8S_NAMESPACE: hmcts-complaints-formbuilder-adapter-staging
+          command: './deploy-scripts/bin/deploy'
 
   deploy_production:
     working_directory: ~/circle/git/hmcts-complaints-formbuilder-adapter
@@ -43,46 +60,33 @@ jobs:
           fingerprints:
             - "7e:e7:44:be:a1:4b:4e:3c:56:65:3a:94:19:50:02:cc"
       - run:
+          name: Setup base environment variable
+          command: |
+            echo "export BUILD_SHA=$CIRCLE_SHA1" >> $BASH_ENV
+            echo "export SSH_FILE_FOR_SECRETS=~/.ssh/id_rsa_7ee744bea14b4e3c56653a94195002cc" >> $BASH_ENV
+      - run:
+          name: cloning deploy scripts
+          command: 'git clone git@github.com:ministryofjustice/fb-deploy.git deploy-scripts'
+      - run:
+          name: build and push docker images
+          environment:
+            ENVIRONMENT_NAME: production
+          command: './deploy-scripts/bin/build'
+      - run:
           name: deploy to production
-          command: './deploy/scripts/circle_deploy.sh $CIRCLE_SHA1 production $KUBE_TOKEN_PRODUCTION'
+          environment:
+            APPLICATION_NAME: hmcts-complaints-formbuilder-adapter
+            PLATFORM_ENV: production
+            K8S_NAMESPACE: hmcts-complaints-formbuilder-adapter-production
+          command: './deploy-scripts/bin/deploy'
 
 workflows:
   version: 2
   release:
     jobs:
       - test
-      - aws-ecr/build-and-push-image:
-          name: push_app_image
-          dockerfile: Dockerfile
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_DEFAULT_REGION
-          repo: "form-builder/hmcts-complaints-formbuilder-adapter"
-          tag: "APP_${CIRCLE_SHA1}"
-          requires:
-            - test
-          filters:
-            branches:
-              only:
-                - master
-                - deploy-to-staging
-      - aws-ecr/build-and-push-image:
-          name: push_worker_image
-          dockerfile: Dockerfile.worker
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_DEFAULT_REGION
-          repo: "form-builder/hmcts-complaints-formbuilder-adapter"
-          tag: "WORKER_${CIRCLE_SHA1}"
-          requires:
-            - test
-          filters:
-            branches:
-              only:
-                - master
-                - deploy-to-staging
       - deploy_staging:
           requires:
-            - push_app_image
-            - push_worker_image
             - test
           filters:
             branches:
