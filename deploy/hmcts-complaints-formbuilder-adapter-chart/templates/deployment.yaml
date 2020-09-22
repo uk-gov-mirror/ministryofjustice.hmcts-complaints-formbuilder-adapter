@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hmcts-complaints-formbuilder-adapter
+  name: hmcts-complaints-formbuilder-adapter-api-{{ .Values.environmentName }}
 spec:
   replicas: 2
   selector:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: hmcts-complaints-formbuilder-adapter
-        image: "754256621582.dkr.ecr.eu-west-2.amazonaws.com/formbuilder/ecr-repo-fb-hmcts-complaints-adapter-api:{{ .Values.circleSha1 }}"
+        image: "754256621582.dkr.ecr.eu-west-2.amazonaws.com/formbuilder/hmcts-complaints-formbuilder-adapter-api:{{ .Values.circleSha1 }}"
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
@@ -81,7 +81,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hmcts-complaints-formbuilder-adapter-worker
+  name: hmcts-complaints-formbuilder-adapter-worker-{{ .Values.environmentName }}
 spec:
   replicas: 2
   selector:
@@ -95,7 +95,7 @@ spec:
     spec:
       containers:
       - name: hmcts-complaints-formbuilder-adapter
-        image: "754256621582.dkr.ecr.eu-west-2.amazonaws.com/formbuilder/ecr-repo-fb-hmcts-complaints-adapter-workers:{{ .Values.circleSha1 }}"
+        image: "754256621582.dkr.ecr.eu-west-2.amazonaws.com/formbuilder/hmcts-complaints-formbuilder-adapter-worker:{{ .Values.circleSha1 }}"
         imagePullPolicy: Always
         env:
         - name: HOST
