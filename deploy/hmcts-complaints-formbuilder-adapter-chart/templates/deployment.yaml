@@ -34,33 +34,33 @@ spec:
         - name: OPTICS_ENDPOINT
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: OPTICS_ENDPOINT
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: optics_endpoint
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: SECRET_KEY_BASE
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: secret_key_base
         - name: JWE_SHARED_KEY
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: JWE_SHARED_KEY
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: jwe_shared_key
         - name: OPTICS_SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: OPTICS_SECRET_KEY
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: optics_secret_key
         - name: OPTICS_API_KEY
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: OPTICS_API_KEY
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: optics_api_key
         - name: SENTRY_DSN
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: SENTRY_DSN
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: sentry_dsn
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
@@ -69,13 +69,13 @@ spec:
         - name: METRICS_AUTH_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: METRICS_AUTH_PASSWORD
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: metrics_auth_password
         - name: METRICS_AUTH_USERNAME
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: METRICS_AUTH_USERNAME
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: metrics_auth_username
 ---
 # workers
 apiVersion: apps/v1
@@ -105,33 +105,33 @@ spec:
         - name: OPTICS_ENDPOINT
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: OPTICS_ENDPOINT
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: optics_endpoint
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: SECRET_KEY_BASE
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: secret_key_base
         - name: JWE_SHARED_KEY
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: JWE_SHARED_KEY
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: jwe_shared_key
         - name: OPTICS_SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: OPTICS_SECRET_KEY
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: optics_secret_key
         - name: OPTICS_API_KEY
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: OPTICS_API_KEY
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: optics_api_key
         - name: SENTRY_DSN
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: SENTRY_DSN
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: sentry_dsn
         - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
@@ -140,10 +140,10 @@ spec:
         - name: METRICS_AUTH_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: METRICS_AUTH_PASSWORD
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: metrics_auth_password
         - name: METRICS_AUTH_USERNAME
           valueFrom:
             secretKeyRef:
-              name: hmcts-complaints-formbuilder-adapter-secret
-              key: METRICS_AUTH_USERNAME
+              name: hmcts-complaints-formbuilder-adapter-secrets-{{ .Values.environmentName }}
+              key: metrics_auth_username
