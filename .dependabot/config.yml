@@ -8,7 +8,13 @@ update_configs:
      - brenetic
      - tomas-stefano
   - package_manager: "docker"
-    directory: "/"
+    directory: "/docker/api"
+    update_schedule: "daily"
+    default_reviewers:
+     - brenetic
+     - tomas-stefano
+  - package_manager: "docker"
+    directory: "/docker/worker"
     update_schedule: "daily"
     default_reviewers:
      - brenetic

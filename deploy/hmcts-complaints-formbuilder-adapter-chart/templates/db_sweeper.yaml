@@ -12,7 +12,7 @@ spec:
         spec:
           containers:
           - name: hmcts-complaints-formbuilder-adapter-{{ .Values.environmentName }}
-            image: "754256621582.dkr.ecr.eu-west-2.amazonaws.com/formbuilder/ecr-repo-fb-hmcts-complaints-adapter-api:{{ .Values.circleSha1 }}"
+            image: "754256621582.dkr.ecr.eu-west-2.amazonaws.com/formbuilder/hmcts-complaints-formbuilder-adapter-api:{{ .Values.circleSha1 }}"
             args:
             - /bin/sh
             - -c
