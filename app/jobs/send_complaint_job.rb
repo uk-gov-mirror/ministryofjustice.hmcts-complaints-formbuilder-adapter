@@ -13,6 +13,7 @@ class SendComplaintJob < ApplicationJob
       get_bearer_token: bearer_token
     ).execute
 
+    raise 'Testing Sentry'
     record_successful_submission
   end
 
