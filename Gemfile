@@ -11,7 +11,7 @@ gem 'jwt', '~> 2.2'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.0.3'
-gem 'sentry-raven', '3.0.4'
+gem 'sentry-raven', '3.0.1'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
