@@ -16,7 +16,7 @@ describe Presenter::Complaint do
         'email_address': 'test@test.com',
         'phone': '07548733456',
         'building_street': '102 Petty France',
-        'building_street_line_2': 'Westminster',
+        'building_street_line2': 'Westminster',
         'town_city': 'London',
         'county': 'London',
         'postcode': 'SW1H 9AJ',
