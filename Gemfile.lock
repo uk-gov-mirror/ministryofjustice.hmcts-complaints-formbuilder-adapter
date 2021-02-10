@@ -237,7 +237,7 @@ GEM
       sprockets (>= 3.0.0)
     thor (1.0.1)
     thread_safe (0.3.6)
-    timecop (0.9.3)
+    timecop (0.9.4)
     tzinfo (1.2.9)
       thread_safe (~> 0.1)
     unicode-display_width (2.0.0)
@@ -272,7 +272,7 @@ DEPENDENCIES
   sentry-raven (= 3.0.4)
   spring
   spring-watcher-listen (~> 2.0.0)
-  timecop (~> 0.9.3)
+  timecop (~> 0.9.4)
   webmock (~> 3.11.2)
 
 RUBY VERSION
